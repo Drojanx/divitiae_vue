@@ -1,0 +1,54 @@
+$navbar-padding-y: 0;
+$navbar-light-color: rgba(1, 56, 112, 1) !default;
+$navbar-light-hover-color: rgba(1, 56, 112, .7) !default;
+$navbar-light-active-color: rgba(1, 56, 112, .9) !default;
+$navbar-light-disabled-color: rgba(1, 56, 112, .3) !default;
+$navbar-brand-font-size: 1rem * 2;
+.w-75 {
+    width: 75%;
+}
+.w-60 {
+    width: 60%;
+}
+.w-33 {
+    width: 33%;
+}
+.w-25 {
+    width: 25%;
+}
+.w-20 {
+    width: 20%;
+}
+.w-15 {
+    width: 15%;
+}
+$spacer: 1rem !default;
+$spacers: (
+  0: 0,
+  1: $spacer * .25,
+  2: $spacer * .5,
+  3: $spacer,
+  4: $spacer * 1.5,
+  5: $spacer * 3,
+  6: $spacer * 4.5,
+  7: $spacer * 6,
+  8: $spacer * 7.5,
+  9: $spacer * 9
+) !default;
+
+.auth-wrapper {
+    display: flex;
+    flex-grow: 1;
+}
+.auth-inner {
+    display: flex;
+    flex-grow: 1;
+}
+
+// import to set changes
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "./assets/scss/app.scss";
+@import "./assets/scss/login.scss";
+@import "./assets/scss/root.scss";
+@import "./assets/scss/signup.scss";
+

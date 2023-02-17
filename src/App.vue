@@ -1,30 +1,40 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <div id="myApp" class="d-flex flex-column">
+    <Nav />
+    
+    <div class="auth-wrapper">
+      <div class="auth-inner">
+        <Router-view v-slot="{ Component }">
+          <Transition name="route" mode="out-in">
+            <component :is="Component"></component>
+          </Transition>
+        </Router-view>
+      </div>
+    </div>
+  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+  import axios from 'axios';
+  import Nav from './components/Nav.vue'
 
-nav {
-  padding: 30px;
+  export default {
+    name: 'App',
+    components: {
+      Nav
+    },
+    watch: {
+        $route: {
+            immediate: true,
+            handler(to, from) {
+                document.title = to.meta.title || 'Divitiae';
+            }
+        },
+    },
+    async created() {
+      const response = await axios.get('user');
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+      this.$store.dispatch('user', response.data);
     }
   }
-}
-</style>
+</script>

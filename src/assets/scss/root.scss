@@ -1,0 +1,23 @@
+#rootSection {
+    flex-grow: 1;
+}
+
+#info {
+    flex-grow: 1;
+    background-color: white;
+}
+
+.aboutitem {
+    margin-top: -10rem;
+    pointer-events: none;
+    background-color: white;
+}
+
+.btn {
+    font-weight: bold;
+
+}
+
+.btn-warning {
+    color: #6C757D;
+}
