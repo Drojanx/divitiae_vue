@@ -10,6 +10,18 @@
         name: 'RootView',
         components: {
             Root
+        },
+    
+        watch: {
+        $route: {
+            immediate: true,
+            handler(to, from) {
+                document.title = to.meta.title || 'Divitiae';
+            }
+        },
+      },
+        beforeCreate: function() {
+            document.body.className = 'root';
         }
     }
 </script>

@@ -18,6 +18,9 @@
                 document.title = to.meta.title || 'Divitiae - Log in';
             }
         },
-    }
+      },
+      beforeCreate: function() {
+        document.body.className = 'root';
+      }
   }
 </script>

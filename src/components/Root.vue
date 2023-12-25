@@ -1,9 +1,9 @@
 <template>
     <div id="rootSection" class="d-flex flex-column">
-        <div class="container-fluid mt-8 w-50 text-center text-white" id="root">
-            <h1 class="text-white">LOREM IPSUM DOLOR SIT AMET</h1>
+        <div class="container-fluid mt-8 w-50 text-center" id="root">
+            <h1 class="">LOREM IPSUM DOLOR SIT AMET</h1>
             <p class="w-100 mx-auto mt-5">Curabitur ac ex eu nisl blandit rhoncus. Duis posuere eleifend nibh, in pulvinar elit vestibulum quis. Vivamus sed dolor sit amet lorem efficitur facilisis.</p>
-            <div class=" mt-6 mb-9 buttons w-50 mx-auto">
+            <div class=" mt-6 mb-9 w-50 mx-auto">
                 <button class="btn btn-warning px-5 py-2 rounded-0">Button</button>
                 <button class="btn btn-outline-light px-5 py-2 rounded-0">Button</button>
             </div>
@@ -32,6 +32,8 @@
 
 
 <script>
+import {mapGetters} from 'vuex';
+import axios from 'axios'
 
     export default {
         name: 'Root',
@@ -41,7 +43,35 @@
                 const googleUser = await this.$gAuth.signIn();
                 console.log('Google user', googleUser);
             }
+        },
+        created: async function() {
             
+        },
+        computed: {
+      ...mapGetters(['appClass'])
+
+         },
+        async created() {
+
+            this.$store.dispatch('appClass', 'annonApp');
+
+            /* if(localStorage.getItem('token')!==null) {        
+                const userdata = await axios.get('user/userdata');
+
+                let loader = this.$loading.show({
+                        // Optional parameters
+                    container: this.fullPage ? null : this.$refs.loadingArea,
+                    onCancel: this.onCancel,
+                });
+
+                this.$store.dispatch('user', userdata.data.userDataDTO);
+
+                console.log(userdata.data.userDataDTO);
+
+                this.$router.push('/home');          
+
+                loader.hide()  
+            } */ 
         }
     }
     

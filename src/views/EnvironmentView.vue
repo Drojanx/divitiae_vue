@@ -1,19 +1,19 @@
 <template>
-  <div id="home">
+  <div id="environment">
     <AppBar/>
-    <Home/>
+    <Environment/>
   </div>
 </template>
 
 <script>
 
-  import Home from '../components/Home.vue'
+  import Environment from '../components/Environment.vue'
   import AppBar from '../components/Bars/AppBar.vue'
 
   export default {
-      name: 'HomeView',
+      name: 'EnvironmentView',
       components: {
-        Home,
+        Environment,
         AppBar
       },
       beforeCreate: function() {

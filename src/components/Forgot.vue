@@ -24,6 +24,7 @@
 
     export default {
         name: 'Forgot',
+        
         data() {
             return {
                 email: ''

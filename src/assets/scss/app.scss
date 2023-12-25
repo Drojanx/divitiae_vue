@@ -1,74 +1,824 @@
-@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&family=Heebo:wght@300&family=Oswald:wght@200;300;400;500;600;700&display=swap');
-* {
+$ceneteredAppListWidth: 1440px;
+$neg: -1;
+#home, #environment, #environmentConfig {
+  width: 100%;
+  background-color: rgb(246, 247, 249);
+  border-top: solid 2px black;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Open Sans', sans-serif;
-  min-height: 100vh;
-  line-height: 1.8;
-  background-image: url(./assets/people-g51cb86f5e_1920.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-attachment: fixed;
-  color: #2c3e50;
+#environmentChildrenSection {
+  margin: auto;
+  width: 98%;
+  gap: 1.5em;
 }
 
-#myApp {
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-  background: rgb(1,224,142);
-  background: linear-gradient(180deg, rgb(1, 224, 142) 0%, rgba(0, 212, 255, 0.2356880252) 100%);
+#session {
+  margin-right: 4.5rem;
 }
 
-h1, h2, h3, h4, h5, label, span {
-  font-weight: 700 !important;
-  color: #2c3e50 !important;
+#workspaceName {
+  height: 3rem;
 }
 
-nav {
-  z-index: 2;
-  height: 120px;
-  font-weight: bold;
-  display: flex;
-  align-items: flex-end !important;
-  font-size: 20px !important;
-  .router-link-exact-active {
-      color: #ffffff;
+@media screen and (max-width: 1850px){
+  #vpCentered {
+    width: 1140px !important;
+    margin-right: calc(-1140px/2)!important;
   }
 }
 
-#navLogo {
-  height: 100px;
+@media screen and (max-width: 1725px){
+  #vpCentered {
+    width: 1040px !important;
+    margin-right: calc(-1040px/2)!important;
+  }
 }
 
-#topbar {
+@media screen and (max-width: 1600px){
+  #vpCentered {
+    width: 880px !important;
+    margin-right: calc(-880px/2)!important;
+
+  }
+}
+
+@media screen and (max-width: 1470px){
+  #vpCentered {
+    margin-right: calc(-1000px/2)!important;
+  }
+}
+
+@media screen and (max-width: 1370px){
+  #vpCentered {
+    margin-right: calc(-1100px/2)!important;
+  }
+}
+
+@media screen and (max-width: 1280px){
+  #vpCentered {
+    width: 880px !important;
+  }
+}
+
+@media screen and (max-width: 1145px){
+  #vpCentered {
+    width: 780px !important;
+    margin-right: calc(-1000px/2)!important;
+  }
+}
+
+
+@media screen and (max-width: 1040px){
+  #environmentList{
+    flex-direction: row;
+    align-items: start;
+    justify-content: center;
+  }
+  #environmentChildrenSection {
+    flex-direction: column;
+    gap: 1em;
+  }
+  #wsList {
+    width: 90% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #vpCentered {
+    width: 100% !important;
+    position: static !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #envName {
+    text-align: center !important;
+  }
+  #appScroll {
+    justify-content: start !important;
+  }
+  #session {
+    margin-right: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 600px){
+  #environmentChildrenSection {
+    max-width: 500px !important;
+    flex-direction: column !important;
+    gap: 1em !important;
+  }
+}
+
+@media screen and (max-width: 500px){
+  #environmentChildrenSection {
+    max-width: 400px !important;
+    flex-direction: column !important;
+    gap: 1em !important;
+  }
+
+  #wsList {
+    width: 400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #vpCentered {
+    width: 400px !important;
+
+  }
+}
+
+@media screen and (max-width: 430px){
+  #environmentChildrenSection {
+    max-width: 370px !important;
+    flex-direction: column !important;
+    gap: 1em !important;
+  }
+  #wsList {
+    width: 370px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #vpCentered {
+    width: 370px !important;
+
+  }
+}
+
+@media screen and (max-width: 376px){
+  #environmentChildrenSection {
+    max-width: 340px;
+    flex-direction: column;
+    gap: 1em;
+  }
+  #wsList {
+    width: 340px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  #vpCentered {
+    width: 340px !important;
+
+  }
+}
+
+#environmentList {
+  flex-direction: column;
+}
+
+#workspaceContent, #wsList, #homeContent, #appContent, #configContent{
+  flex-wrap: wrap;
+  border-radius: .75rem;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  p {
+  color: $font-color;
+    font-weight: bold;
+  }
+}
+
+#workspaceHeader {
+  height: 8.5rem;
+}
+
+#wsList {
+  margin-left: 0;
+  width: 258px;
+}
+
+$viewW: 100vw;
+
+#vpCentered {
+  height: calc(100% - 13rem);
+  position: absolute;
+  right: 50%;
+  width: $ceneteredAppListWidth;
+  margin:0 auto;
+  padding-right: 0;
+  padding-left: 0;
+  margin-right: calc(-1440px/2);
+}
+
+#appName {
+  height: 2rem;
+  line-height: 2rem;
+  margin-top: 1rem;
+  p {
+    margin-bottom: 0 !important;
+    font-size: 1.5rem;
+  }
+}
+
+#workspaceContent {
+  height: 100%;
+  width: 90%;
+  margin: auto;
+}
+
+#appContent {
+  height: calc(100% - 10rem);
+}
+
+#appScroll {
+  justify-content: center;
+}
+
+.addElementsIcon {
+  font-size: 2.2em;
+  line-height: 57px;
+  color: $base-color;
+  margin: auto;
+  &:hover {
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+}
+
+.fa-square-plus {
+  path {
+    stroke-width: 20;
+    stroke: $border-base-color
+  }
+}
+
+.workspaceTab, .appTab {
+  background-color: $base-color;
+  text-align: center;
+  border-radius: 0.25rem;
+  max-width: 15em;
+  min-width: 5em;
+  font-size: 1.2rem;
+  border: solid 2px $border-base-color;
+  a {
+    display: block; /* Hace que el enlace sea un elemento en bloque */
+    width: 100%; /* Ocupa todo el ancho del contenedor */
+    height: 100%; /* Ocupa todo el alto del contenedor */
+    text-align: center; /* Centrar el texto horizontalmente si es necesario */
+    text-decoration: none; /* Quitar subrayado por defecto */
+    color: #0074d9; /* Color del texto del enlace */
+    background-color: transparent; /* Fondo transparente */
+    transition: background-color 0.3s ease; /* Transición de color de fondo al pasar el ratón */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: $font-color;
+    font-weight: bold;
+    font-size: 18px;
+}
+}
+
+.appTab {
+  align-self: auto;
+  max-height: 50px;
+  a {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+#itemDetailSection, #newAppFormSection, #newUserFormSection {
+  background-color: rgba(228, 228, 228, 0.61);
+  backdrop-filter: blur(5px);
+  position: absolute;
+  margin:0 auto;
+  top: 6rem; 
+  bottom: 0px;
+  left: 0px;
+  width: 100vw;
+  padding-top: 100px;
+}
+
+$fields-name-column-color: rgb(246, 247, 249);
+$fields-name-column-width: 30%;
+
+#itemDetail, #newAppForm, #newUserForm {
+  background: linear-gradient(
+    to right,
+    $fields-name-column-color 0%,
+    $fields-name-column-color $fields-name-column-width,
+    white $fields-name-column-width,
+    white 100%
+  );
+  width: calc($ceneteredAppListWidth/1.5);
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  margin-left: calc(#{$neg} * #{$ceneteredAppListWidth}/3);
+  bottom: 100px;
+  overflow: hidden;
+  h1 {
+    width: calc(100% - $fields-name-column-width);
+    margin-left: $fields-name-column-width;
+    padding-left: 1.5rem;
+    padding-right: 0.5rem;
+    border-bottom: 0.1em solid black;
+    padding-bottom: 0.25em;
+  }
+}
+
+#newUserForm {
+  width: calc($ceneteredAppListWidth/2);
+  margin-left: calc(#{$neg} * #{$ceneteredAppListWidth}/4);
+}
+#itemDetailNav {
+  color:black; 
+  font-size: 1.33em;
+  text-align: end;
+  line-height: 0.3em;
+  svg {
+    padding-right: 0.6em;
+    padding-left: 0.6em;
+    padding-top: 0.5em;
+    cursor: pointer;
+  }
+}
+
+.itemDetailKey, .newAppFieldName {
+  padding-right: 1.5rem;
+  padding-left: .5rem;
+  align-self: center;
+  font-weight: bold;
+  white-space: initial;
+  overflow-wrap: break-word;
+  text-overflow: ellipsis;
+}
+
+.itemDetailValue, .newAppFieldType {
+  padding-left: 1.5rem;
+  font-weight: 400 !important;
+  align-self: center;
+  white-space: initial;
+  overflow-wrap: break-word;
+  padding-right: 1.5rem;
+
+  select {
+    width: 100%;
+    padding: .5rem 1.5rem;
+    border-radius: 10px;
+  }
+}
+
+#relatedItems {
+  h5{
+    margin-top: 1em;
+    margin-left: $fields-name-column-width;
+    font-weight: 200 !important;
+    padding-left: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 0.3em solid rgb(246, 247, 249);
+  }
+}
+
+#newAppForm, #newUserForm {
+  #newAppName {
+    font-size: 2em;
+    width: calc(100% - $fields-name-column-width);
+    margin-left: $fields-name-column-width;
+    padding-left: 1.5rem;
+    outline: none;
+    border: none;
+    border-bottom: 0.1em solid black;
+    padding-bottom: 0.25em;
+  }
+  .newAppField, .newAppHeaders {
+    margin: 0.5em 0;
+    input, select {
+      border: none;
+    }
+    input {
+      background-color: transparent;
+    }
+    select {
+      background-color: $fields-name-column-color;
+    }
+    select:focus, input:focus {
+      outline:none;
+    }
+    select:hover {
+      cursor: pointer;
+    }
+  }
+  #addField {
+    width: $fields-name-column-width;
+    text-align: end;
+    svg {
+      margin-right: $fields-name-column-width;
+      cursor: pointer;
+    }
+  }
+}
+
+#newAppForm {
+  .newAppField{
+    max-height: 5rem;
+    
+  }
+}
+
+.new-app-field-animation {
+  animation: fade-in 1s ;
+}
+
+.remove-new-app-field {
+  transition: all .5s ease-in-out;
+}
+
+
+$incorrect-value-bg: rgb(255, 111, 111);
+$incorrect-value-border: 2px solid red;
+
+.newAppIncorrectFieldName {
+
+  border: $incorrect-value-border !important;
+  background-color: $incorrect-value-bg !important;
+
+  &::placeholder {
+    
+    color: white;
+  }
+  
+}
+
+.newAppIncorrectFieldType {
+  border: $incorrect-value-border !important;
+  background-color: $incorrect-value-bg !important;
+  color: white;
+}
+
+#createAppButton {
+  margin-left: $fields-name-column-width;
+
+  button {
+    width: 50%;
+    margin: 0 auto;
+    border: solid 2px $border-base-color;
+    border-radius: .25em;
+    background-color: $base-color;
+    color: white;
+  }
+
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    margin-left: 100%;
+    height: 2.5rem;
+  }
+  to {
+    min-height: 2.5rem;
+    opacity: 1;
+    margin-left: 0%;
+  }
+}
+
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    margin-left: 0%;
+    min-height: 2.5rem;
+  }
+  to {
+    height: 2.5rem;
+    opacity: 0;
+    margin-left: 100%;
+  }
+}
+
+@keyframes fade-out-x2 {
+  from {
+    opacity: 1;
+    margin-left: 0%;
+    min-height: 5rem;
+  }
+  to {
+    height: 5rem;
+    opacity: 0;
+    margin-left: 100%;
+  }
+}
+
+.fa-circle-minus:hover {
+  cursor: pointer;
+}
+
+#appItemsTable, #usersList {
+  font-size: small;
+  tr {
+    max-height: 1em !important;
+    td {
+      max-width: 4em;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+}
+
+#appItemsTable {
+  tr:hover {
+    cursor: pointer;
+  }
+}
+
+#usersList {
+  width: 90%;
+  margin: auto;
+  border-right: 1px solid #00000030;
+  border-left: 1px solid #00000030;
+}
+
+.fa-pen {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#add-item-button {
+  text-align: center;
+  span {
+    background-color: $base-color;
+    line-height: 100%;
+    font-size: 17px;
+
+  }
+  svg {
+    color: $base-color;
+    background-color: white;
+  }
+  .addElementsIcon {
+    font-size: 2.2em;
+    line-height: 57px;
+    color: $base-color;
+    margin: auto;
+    &:hover {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    
+  }
+}
+
+.buttons {
+  border: 2px #ffc107 solid;
+}
+
+.add-item-icon {
+
+}
+
+
+
+.relationFieldCard {
+  background-color: $base-light-color;
+  margin: 0;
+  padding: 0 2em 0 2em;
+  border-radius: 0.25rem;
+  border: solid 2px $border-base-color;
+  transition: all .2s;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 20em;
+  p {
+    font-weight: normal !important;
+    font-size: smaller;
+    margin-bottom: 0.2em;
+    transition: all .2s;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+  span {
+    transition: all .2s;
+  }
+
+  &:hover {
+    background-color: $base-color;
+    color: white;
+    cursor: pointer;
+    transform: scale(1.1);
+    span {
+      color: white !important;
+    }
+    p {
+      color: white !important;
+    }
+  }
+}
+
+.fa-wrench {
+  cursor: pointer;
+}
+
+#configContent {
+  width: 80%;
+  margin: auto;
   height: 100%;
 }
 
-/*.fade-enter, .fade-leave-to {
-  opacity: 0;
-  transform: translateX(-5em);
+#configInfo {
+  margin: auto;
+  text-align: center;
+  width: 70%;
+  /* input {
+    border: none;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+    padding-left: 0.7rem;
+     &:focus {
+      outline: none;
+      background-color: $base-color;
+      color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      border-bottom: 1px solid black;
+
+    } 
+  } */
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: all .3s ease;
-}*/
+.effect-9, .effect-1{width: 100%; border: none; border-bottom: 1px solid #ccc; padding: 7px 14px 9px; transition: 0.4s; outline: none; color: rgba(0, 0, 0, 0.726)}
+.effect-9:focus {outline: none}
+.effect-9 ~ .focus-border:before,
+.effect-9 ~ .focus-border:after{content: ""; position: absolute; top: 0; right: 0; width: 0; height: 2.5px; background-color: $base-color; transition: 0.2s; transition-delay: 0.2s;}
+.effect-9 ~ .focus-border:after{top: auto; bottom: 0; right: auto; left: 0; transition-delay: 0.6s;}
+.effect-9 ~ .focus-border i:before,
+.effect-9 ~ .focus-border i:after{content: ""; position: absolute; top: 0; left: 0; width: 2.5px; height: 0; background-color: $base-color; transition: 0.2s;}
+.effect-9 ~ .focus-border i:after{left: auto; right: 0; top: auto; bottom: 0; transition-delay: 0.4s;}
+.effect-9:focus ~ .focus-border:before,
+.effect-9:focus ~ .focus-border:after{width: 100%; transition: 0.2s; transition-delay: 0.6s;}
+.effect-9:focus ~ .focus-border:after{transition-delay: 0.2s;}
+.effect-9:focus ~ .focus-border i:before,
+.effect-9:focus ~ .focus-border i:after{height: 100%; transition: 0.2s;}
+.effect-9:focus ~ .focus-border i:after{transition-delay: 0.4s;}
 
-.route-enter-from {
-  opacity: 0;
-  transform: translateX(100px);
+
+.effect-1:focus {outline: none; padding: 7px 14px 9px;}
+.effect-1 ~ .focus-border{position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: rgba(255, 193, 7); transition: 0.4s;}
+.effect-1:focus ~ .focus-border{width: 100%; transition: 0.4s;}
+
+#configInfo {
+  .col-3 {
+    width: 60%; margin: 5px auto; 
+  }
+  .effect-1 {
+    text-align: center; 
+  }
 }
-.route-enter-active {
-  transition: all 0.3s ease-out;
+
+.item-detail-row{
+  transition: all .2s;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(246, 247, 249);
+    transform: scale(1.1);
+
+    .itemDetailValue {
+     
+    }
+  }
 }
-.route-leave-to {
-  opacity: 0;
-  transform: translateX(-100px);
+
+.itemDetailValue  {
+  transition: all .2s;
+  input {
+    border: none;
+    padding: 3px 6px;
+    border-radius: 6px;
+    &:focus {
+      outline: none;
+    }
+  }
+  .switch {
+    margin-left: 3px;
+  }
+  
 }
-.route-leave-active {
-  transition: all 0.3s ease-in;
+
+.col-3{float: none; position: relative;}
+
+.thead-greenish {
+  background-color: $base-color;
+  border: 1px solid $border-base-color;
+  color: $font-color;
+}
+
+.effect-22, 
+.effect-23, 
+.effect-24{border: 0; padding: 7px 15px; border: 1px solid #ccc; position: relative; background: transparent;}
+
+.effect-22 ~ .focus-bg{position: absolute; left: 0; top: 0; width: 0; height: 100%; background-color: transparent; transition: 0.4s; z-index: -1;}
+.effect-22:focus ~ .focus-bg, 
+.has-content.effect-22 ~ .focus-bg{transition: 0.4s; width: 100%; background-color: #ededed;}
+.effect-22 ~ label{position: absolute; left: 14px; width: 100%; top: 10px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
+.effect-22:focus ~ label, .has-content.effect-22 ~ label{top: -18px; left: 0; font-size: 12px; color: #333; transition: 0.3s;}
+
+.effect-23 ~ .focus-bg:before,
+.effect-23 ~ .focus-bg:after{content: ""; position: absolute; left: 0; top: 0; width: 0; height: 0; background-color: #ededed; transition: 0.3s; z-index: -1;}
+.effect-23:focus ~ .focus-bg:before,
+.has-content.effect-23 ~ .focus-bg:before{transition: 0.3s; width: 50%; height: 100%;}
+.effect-23 ~ .focus-bg:after{left: auto; right: 0; top: auto; bottom: 0;}
+.effect-23:focus ~ .focus-bg:after,
+.has-content.effect-23 ~ .focus-bg:after{transition: 0.3s; width: 50%; height: 100%;}
+.effect-23 ~ label{position: absolute; left: 14px; width: 100%; top: 10px; color: #aaa; transition: 0.3s; z-index: -1; letter-spacing: 0.5px;}
+.effect-23:focus ~ label, .has-content.effect-23 ~ label{top: -18px; left: 0; font-size: 12px; color: #333; transition: 0.3s;}
+
+#newEnvironment {
+
+  .form-group {
+    margin: auto;
+    position: relative;
+    width: 30%;
+    height: 50px;
+    border-bottom: 2px solid black;
+    margin-bottom: 10px;
+    label {
+      position: absolute;
+      top: 50% !important;
+      left: 5px;
+      transform: translateY(-50%);
+      pointer-events: none;
+      transition: 0.5s;
+      font-size: 12px;
+    }
+  
+    input {
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      font-weight: 600;
+      padding: 0 5px;
+    }
+
+    .text-danger {
+      font-size: 12px;
+    }
+  }
+  .form-group input:focus~label,
+  .form-group input:valid~label {
+    top: -1px !important;
+    background-color: white;
+    z-index: 2;
+    padding: 0 7px;
+  }
+
+  .form-group:focus-within {
+    border: 2px solid black;
+  }
+
+}
+
+.fa-trash {
+  position: absolute; 
+  top: 3rem; 
+  font-size: 25;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.success-field-change {
+  animation: append-animate-success 2s linear;
+}
+
+.fail-field-change {
+  animation: append-animate-fail 2s linear;
+}
+
+@keyframes append-animate-success {
+	0% {
+		background-color: $base-light-color;
+	}
+  50% {
+		background-color: $base-light-color;
+	}
+	100% {
+		background-color: transparent;
+	}
+}
+
+@keyframes append-animate-fail {
+	0% {
+		background-color: rgb(255, 103, 103);
+	}
+  50% {
+		background-color: rgb(255, 103, 103);
+	}
+	100% {
+		background-color: transparent;
+	}
+}
+
+
+#page-not-found {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(246, 247, 249);
+  border-top: solid 2px black;
 }

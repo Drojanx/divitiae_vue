@@ -1,13 +1,20 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import router from './router'
+import { router } from './router'
 import store from './store'
 import './axios'
 import './styles.scss'
+import { LoadingPlugin } from 'vue-loading-overlay';
+import 'vue-loading-overlay/dist/css/index.css';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons'
+import VueLodash from 'vue-lodash'
 
+library.add(fas)
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,4 +31,8 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 const app = createApp(App);
-app.use(store).use(router).mount('#app')
+
+app.config.globalProperties.$loading = LoadingPlugin;
+
+app.use(store).use(router).use(LoadingPlugin).use(VueLodash).component('fa', FontAwesomeIcon);
+app.mount('body')

@@ -1,22 +1,21 @@
 <template>
-  <Signup/>
+  <LogOut/>
 </template>
 
 <script>
 
-  import Signup from '../components/Signup.vue'
+  import LogOut from '../components/LogOut.vue'
 
   export default {
-      name: 'SignupView',
-
+      name: 'LoginView',
       components: {
-        Signup
+        LogOut
       },
       watch: {
         $route: {
             immediate: true,
             handler(to, from) {
-                document.title = to.meta.title || 'Divitiae - Sign up';
+                document.title = to.meta.title || 'Divitiae - Log out';
             }
         },
       },
@@ -25,10 +24,3 @@
       }
   }
 </script>
-
-<style>
-
-#app {
-  
-}
-</style>
