@@ -30,6 +30,22 @@ nav {
   z-index: 5;
 }
 
+.navbar-nav > li:first-child {
+  background-color: $base-light-color;
+  border-top-left-radius: 22px;
+  border-bottom-left-radius: 22px;
+  border: solid 2px $border-base-color;
+}
+
+.navbar-nav > li:last-child {
+  background-color: $warning-color;
+  border-top-right-radius: 22px;
+  border-bottom-right-radius: 22px;
+  padding: 0 8px;
+  border: solid 2px $warning-border-color;
+  border-left: none;
+}
+
 #logoutButton{
   img{ 
     height: 20px;

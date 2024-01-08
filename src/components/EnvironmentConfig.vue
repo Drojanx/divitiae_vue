@@ -1,7 +1,7 @@
 <template>
     <div id="vpCentered" class="px-0">
         <div id="envName">
-            <h3 class="text-center">{{ environment.environmentName }} - Configuration</h3>            
+            <h3 class="text-center mt-2">{{ environment.environmentName }} - Configuration</h3>            
         </div>
         <div id="configContent" class="pb-4 pt-3 px-3">
             <div id="configInfo" class="container-fluid">

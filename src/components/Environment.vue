@@ -1,7 +1,7 @@
 <template>
     <div class="">
         <div id="environmentChildrenSection" class="d-flex">
-            <div  style="align-self: flex-start;">
+            <div id="environmentInfo" style="align-self: flex-start;">
                 <div class="mx-auto">
                     <p class="text-center" style="margin-top: 1.5rem; font-weight: bold">{{ this.environment.environmentName }} <fa v-if="isAdminInCurrentEnv" @click="openConfig()" icon="fa-solid fa-wrench"></fa></p>
                 </div>
@@ -18,8 +18,24 @@
 
 
                     <div class="container-fluid">
-                        <div id="environmentList" class="row d-flex align-items-center" style="overflow-y: auto;">
+                        <div id="workspacesTabs" class="d-flex align-items-center" style="overflow-y: auto;">
                             <template v-for="workspace in this.environment.workspaces" :key="workspace.id">
+                            <div class="my-1 col text-center workspaceTab" style="cursor: pointer;" :title="workspace.workspaceName " >
+                                <RouterLink class="p-2" :to=" { name: 'workspace', params: {environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: workspace.workspaceNameURL}}" style="text-decoration: none;"> {{ workspace.workspaceName }} </RouterLink>
+                            </div>
+                            </template><template v-for="workspace in this.environment.workspaces" :key="workspace.id">
+                            <div class="my-1 col text-center workspaceTab" style="cursor: pointer;" :title="workspace.workspaceName " >
+                                <RouterLink class="p-2" :to=" { name: 'workspace', params: {environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: workspace.workspaceNameURL}}" style="text-decoration: none;"> {{ workspace.workspaceName }} </RouterLink>
+                            </div>
+                            </template><template v-for="workspace in this.environment.workspaces" :key="workspace.id">
+                            <div class="my-1 col text-center workspaceTab" style="cursor: pointer;" :title="workspace.workspaceName " >
+                                <RouterLink class="p-2" :to=" { name: 'workspace', params: {environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: workspace.workspaceNameURL}}" style="text-decoration: none;"> {{ workspace.workspaceName }} </RouterLink>
+                            </div>
+                            </template><template v-for="workspace in this.environment.workspaces" :key="workspace.id">
+                            <div class="my-1 col text-center workspaceTab" style="cursor: pointer;" :title="workspace.workspaceName " >
+                                <RouterLink class="p-2" :to=" { name: 'workspace', params: {environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: workspace.workspaceNameURL}}" style="text-decoration: none;"> {{ workspace.workspaceName }} </RouterLink>
+                            </div>
+                            </template><template v-for="workspace in this.environment.workspaces" :key="workspace.id">
                             <div class="my-1 col text-center workspaceTab" style="cursor: pointer;" :title="workspace.workspaceName " >
                                 <RouterLink class="p-2" :to=" { name: 'workspace', params: {environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: workspace.workspaceNameURL}}" style="text-decoration: none;"> {{ workspace.workspaceName }} </RouterLink>
                             </div>

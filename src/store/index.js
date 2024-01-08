@@ -11,6 +11,7 @@ export default createStore({
     stateApp: null,
     stateItems: [],
     stateItemDetail: null,
+    stateNewItem: null,
     stateNewAppFormIsOpen: false,
     editingUser: null,
     stateFieldTypes: [
@@ -33,6 +34,10 @@ export default createStore({
      {  
         display: 'Date',
         value: 'date'
+     },  
+     {  
+        display: 'Date-Time',
+        value: 'datetime'
      }, 
      { 
         display: 'Boolean',
@@ -68,6 +73,9 @@ export default createStore({
     },
     stateItemDetail: (state) => {
       return state.stateItemDetail;
+    },
+    stateNewItem: (state) => {
+      return state.stateNewItem;
     },
     stateNewAppFormIsOpen: (state) => {
       return state.stateNewAppFormIsOpen;
@@ -115,6 +123,9 @@ export default createStore({
     stateItemDetail(state, itemDetailPayload) {
       state.stateItemDetail =  itemDetailPayload;
     },
+    stateNewItem(state, newItemPayload) {
+      state.stateNewItem =  newItemPayload;
+    },
     updateItem(state, itemUpdatePayload) {
       state.stateItems.find(item => item._id == itemUpdatePayload._id);
     },
@@ -161,6 +172,9 @@ export default createStore({
     },
     stateItemDetail(context, stateItemDetail) {
       context.commit('stateItemDetail', stateItemDetail);
+    },
+    stateNewItem(context, stateNewItem) {
+      context.commit('stateNewItem', stateNewItem);
     },
     updateItem(context, updateItem) {
       context.commit('updateItem', updateItem);

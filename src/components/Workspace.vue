@@ -7,12 +7,13 @@
         <div id="workspaceContent" class="pb-4 pt-3 px-3">
             <div id="workspaceHeader" class="container-fluid">
                 <p class="text-center" style="margin-bottom: 0;">Apps</p>
-                <div class="mt-0 d-flex justify-content-between w-20 mx-auto" v-if="isAdminInCurrentEnv">
-                    <fa class="addElementsIcon" icon="plus-square" @click="openAppForm"/>
-                </div>
-                <div id="appScroll" class='d-flex' style="overflow-y: auto; max-height: 400px;">
+                
+                <div id="appScroll" class='d-flex ' style="overflow-y: auto; max-height: 400px;">
                     <div v-for="app in this.stateWorkspace.apps" :key="app.id" class="mx-1 my-1 col text-center appTab" style="cursor: pointer;" :title="app.appName ">
                         <RouterLink class="p-2" :to=" { name: 'app', params: {environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: this.stateWorkspace.workspaceNameURL, appNameURL: app.appNameURL}}" style="text-decoration: none;"> {{ app.appName }} </RouterLink>
+                    </div>
+                    <div class="mt-0 d-flex w-10" v-if="isAdminInCurrentEnv">
+                        <fa class="addElementsIcon" icon="plus-square" @click="openAppForm"/>
                     </div>
                 </div>
             </div>

@@ -12,6 +12,7 @@ import EnvironmentNotFound from '../components/NotFound/EnvironmentNotFound.vue'
 import WorkspaceNotFound from '../components/NotFound/WorkspaceNotFound.vue'
 import AppNotFound from '../components/NotFound/AppNotFound.vue'
 import AddUserForm from '../components/AddUser.vue'
+import NewItem from '../components/NewItem.vue'
 import WorkspaceApp from '../components/WorkspaceApp.vue'
 import ItemDetail from '../components/ItemDetail.vue'
 import NewAppForm from '../components/NewAppForm.vue'
@@ -249,6 +250,21 @@ async function getItem(itemId){
 
 }
 
+async function newItemForm() {
+  let app = createStore.getters.stateApp;
+
+  let newItem = {
+    _descriptiveName: ""
+  }
+
+  app.fields.forEach((field) => {
+    newItem[field.nameAsProperty] = ""
+  })
+  console.log(newItem)
+  console.log(app)
+  createStore.dispatch('stateNewItem', newItem);
+}
+
 async function getUserPermissionsOnWorkEnvironment(userId, environmentNameURL) {
   let loader = show({
     color: "#ffc107",
@@ -406,6 +422,30 @@ const routes = [
                     await getWorkspaceApp(appNameURL, to)
                   }
                   await getItem(itemId, to);
+                  next();
+                }
+              },
+              {
+                path: 'new-item',
+                name: 'new-item',
+                meta: { requiresAuth: true },
+                component: NewItem,
+                beforeEnter: async (to, from, next) => {
+                  checkAuthentication;
+                  const environmentNameURL = to.params.environmentNameURL;
+                  const workspaceNameURL = to.params.workspaceNameURL;
+                  const appNameURL = to.params.appNameURL;
+                  if (!createStore.getters.ItemDetail){
+                    if (!createStore.getters.stateWorkspace){
+                      if (!createStore.getters.environment){
+                        await getEnvironment(environmentNameURL, to);
+                      }                      
+                      await getWorkspace(workspaceNameURL, to);
+                    }
+                    await getWorkspaceApp(appNameURL, to)
+                  }
+                  await newItemForm();
+                  next();
                 }
               }
             ]

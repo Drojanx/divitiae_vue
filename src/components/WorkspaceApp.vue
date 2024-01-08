@@ -4,11 +4,10 @@
             <p class="text-center" > {{ stateApp.appName }}</p>
         </div>
         <div class="d-flex justify-content-end me-3">
-            <div class="buttons">
-                <span class="bg-warning btn-warning rounded-0 add-item-icon"><fa icon="fa-solid fa-plus"/></span>
-                <span class="rounded-0 add-item-text text-align-center text-center">Add an item</span>                
+            <div class="mb-1">
+                <RouterLink class="bg-warning rounded px-2 py-1 add-item-text text-align-center text-center" :to=" { name: 'new-item', params: { environmentNameURL: this.environment.environmentNameURL, workspaceNameURL: this.stateWorkspace.workspaceNameURL, appNameURL: this.stateApp.appNameURL } }" style="text-decoration: none; font-weight: 700 !important; color: #2c3e50 !important;"> Add an item </RouterLink>              
             </div>
-            </div>
+        </div>
         <div class="container d-flex py-1 px-3" style="height: 100%;">
             <div class="container-fluid" style="height: 100%;">
                 <div class="row" style="overflow-y: auto; height: 90%;">                    
@@ -38,7 +37,7 @@
                 </div>
             </div>            
         </div>
-        <router-view v-if="this.stateItemDetail!==null" v-slot="{ Component }">
+        <router-view v-if="this.stateItemDetail!==null || this.stateNewItem!==null" v-slot="{ Component }">
                 <component :is="Component" />
         </router-view>
        <!--  <Transition name="fade">
@@ -61,7 +60,7 @@ import { getWorkspaceApp, getItem } from '../router/index.js'
         name: 'WorkspaceApp',
         computed: {
             
-        ...mapGetters(['environment', 'stateWorkspace', 'stateItems', 'stateApp', 'stateItemDetail']),
+        ...mapGetters(['environment', 'stateWorkspace', 'stateItems', 'stateApp', 'stateItemDetail', 'stateNewItem']),
 
         },
         data() {

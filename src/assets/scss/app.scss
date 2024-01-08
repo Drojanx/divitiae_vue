@@ -70,14 +70,21 @@ $neg: -1;
 
 
 @media screen and (max-width: 1040px){
-  #environmentList{
-    flex-direction: row;
-    align-items: start;
-    justify-content: center;
+  #workspacesTabs{
+    display: grid !important;
+    grid-auto-flow: column;  
+    grid-gap: 10px;
+  }
+  .workspaceTab {
+    width: 100%;
   }
   #environmentChildrenSection {
     flex-direction: column;
     gap: 1em;
+  }
+  #environmentInfo {
+    margin: auto;
+    width: 90% !important;
   }
   #wsList {
     width: 90% !important;
@@ -116,7 +123,7 @@ $neg: -1;
     gap: 1em !important;
   }
 
-  #wsList {
+  #environmentInfo {
     width: 400px !important;
     margin-left: auto !important;
     margin-right: auto !important;
@@ -161,7 +168,7 @@ $neg: -1;
   }
 }
 
-#environmentList {
+#workspacesTabs {
   flex-direction: column;
 }
 
@@ -219,7 +226,9 @@ $viewW: 100vw;
 }
 
 #appScroll {
-  justify-content: center;
+  a {
+    flex: 1 0 auto;
+  }
 }
 
 .addElementsIcon {
@@ -245,7 +254,6 @@ $viewW: 100vw;
   background-color: $base-color;
   text-align: center;
   border-radius: 0.25rem;
-  max-width: 15em;
   min-width: 5em;
   font-size: 1.2rem;
   border: solid 2px $border-base-color;
@@ -267,15 +275,24 @@ $viewW: 100vw;
 }
 }
 
-.appTab {
-  align-self: auto;
-  max-height: 50px;
-  a {
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-  }
+.workspaceTab {
+  max-width: 15em;
 }
+
+#appScroll{
+  .appTab {
+    flex: 1 0 auto;
+    align-self: auto;
+    max-height: 50px;
+    a {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  }
+
+}
+
 
 #itemDetailSection, #newAppFormSection, #newUserFormSection {
   background-color: rgba(228, 228, 228, 0.61);
@@ -698,6 +715,12 @@ $incorrect-value-border: 2px solid red;
   
 }
 
+.text {
+  input{
+    width: 100%;
+  }
+}
+
 .col-3{float: none; position: relative;}
 
 .thead-greenish {
@@ -772,6 +795,11 @@ $incorrect-value-border: 2px solid red;
     border: 2px solid black;
   }
 
+}
+
+.add-item-text {
+  border: solid 2px $warning-border-color;
+  cursor: pointer;
 }
 
 .fa-trash {
